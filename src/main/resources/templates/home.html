@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explicação</title>
+</head>
+<body>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="name : ${names}">
+                <td th:text="${name.id}"></td>
+                <td th:text="${name.name}"></td>
+                <td>
+                    <form th:action="@{/form/delete/{id}(id=${name.id})}" method="post">
+                        <input type="hidden" name="_method" value="POST" />
+                        <input type="hidden" name="delete" value="true" />
+                        <button type="submit">Delete</button>
+                    </form>
+                    
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <form th:action="@{/form/post}" method="post">
+        <input type="text" name="name" placeholder="Enter a name" required/>
+        <input type="number" name="id" placeholder="Enter an ID" required/>
+        <button type="submit">Add Name</button>
+    </form>
+
+    
+    <h1>Explicação + formulário teste</h1>
+
+    <p> GET: O método GET é usado para recuperar informações de um recurso específico no servidor. É considerado um método seguro e idempotente, o que significa que pode ser executado várias vezes sem alterar o estado do recurso. Os dados são enviados através da URL como parâmetros de consulta (query parameters). Normalmente, é usado para solicitar e exibir informações.</p>
+        
+    <p> POST: O método POST é usado para enviar dados ao servidor para criar um novo recurso. Ao contrário do método GET, os dados são enviados no corpo da requisição e não são exibidos na URL. O POST é usado para enviar informações sensíveis ou grandes quantidades de dados que não devem ser expostos na URL. Ao enviar a mesma requisição POST várias vezes, diferentes recursos podem ser criados no servidor.</p>
+    
+    <p> DELETE: O método DELETE é usado para solicitar a exclusão de um recurso específico no servidor. Ele indica que o cliente deseja remover o recurso associado à URL fornecida. O DELETE é um método idempotente, o que significa que fazer várias solicitações DELETE para o mesmo recurso não terá efeito além da primeira exclusão.</p>
+    
+    <p> PUT: O método PUT é usado para enviar dados ao servidor para atualizar um recurso específico. Ele substitui integralmente o recurso existente pelo novo recurso enviado no corpo da requisição. O PUT também é considerado idempotente, ou seja, fazer várias solicitações PUT para o mesmo recurso não terá efeito além da primeira atualização.</p>
+
+</body>
+</html>

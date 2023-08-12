@@ -1,0 +1,38 @@
+<html>
+<head>
+    <title>Names</title>
+</head>
+<body>
+    <h1>Names</h1>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Action</th>
+        </tr>
+        <tr th:each="name : ${names}">
+            <td th:text="${name.id}"></td>
+            <td th:text="${name.name}"></td>
+            <td>
+                <a th:href="@{/form/edit/{id}(id=${name.id})}">Edit</a> |
+                <form th:action="@{/form/delete/{id}(id=${name.id})}" method="POST">
+                    <input type="hidden" name="delete" value="true"/>
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+
+    <h2>Add Name</h2>
+    <form th:action="@{/form/post}" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name"/>
+        <br/>
+        <label for="id">ID:</label>
+        <input type="number" id="id" name="id"/>
+        <br/>
+        <button type="submit">Add</button>
+    </form>
+</body>
+</html>

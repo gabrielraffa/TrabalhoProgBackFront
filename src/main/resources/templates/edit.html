@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Name</title>
+</head>
+<body>
+    <h1>Edit Name</h1>
+    <form th:action="@{/form/edit/{id}(id=${nameToEdit.id})}" method="POST">
+        <input type="hidden" name="_method" value="PUT" />
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" th:value="${nameToEdit.name}"/>
+        <br/>
+        <button type="submit">Update</button>
+    </form>
+</body>
+</html>
